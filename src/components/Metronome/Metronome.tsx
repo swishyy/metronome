@@ -76,15 +76,26 @@ const Metronome = () => {
   const tickerRef = useRef(0)
   const [beatsPerMeasure, beatUnit] = TIME_SIGNATURES[timeSignature]
 
+  const dist = new Tone.Distortion(0.5).toDestination()
+  const ampEnv = new Tone.AmplitudeEnvelope(0.01, 0.02, 0.01, 0)
+
   const o1 = useMemo(
     () =>
       Tone.Offline(() => {
-        const ampEnv = new Tone.AmplitudeEnvelope(0.01, 0.02, 1, 0.2)
-        new Tone.Oscillator('C5', 'sine')
-          .connect(ampEnv)
-          .toDestination()
-          .start()
-          .stop('+0.1')
+        // new Tone.MembraneSynth()
+        // .connect(ampEnv)
+        // .toDestination()
+        // .triggerAttackRelease("C2", "+0.2")
+        // new Tone.PluckSynth()
+        // .connect(ampEnv)
+        // .connect(dist)
+        // .toDestination()
+        // .triggerAttackRelease("C6", "8n")
+        // new Tone.Oscillator('C5', 'sine')
+        //   .connect(ampEnv)
+        //   .toDestination()
+        //   .start()
+        //   .stop('+0.1')
       }, 0.1),
     []
   )
